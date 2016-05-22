@@ -1,0 +1,119 @@
+<div class="container ">
+
+  <div class="jumbotron">
+    <h2>Déclarer une machine en panne ou un problème</h2>
+    <p>Pour nous permettre de suivre l'état des laveries, réponds aux quelques questions ci dessous.<br/>
+      Note : si ton linge est coincé ou que le monde va s'effondrer tu peux contacter l'accueil du BdE au <a href="tel:+33472438229">04 72 43 82 29</a>. </p>
+    </div>
+
+    <div class="card card-block questions">
+
+      <div id="step1" *ngIf="!selectedLaundry"> <!--step 1-->
+        <h4 class="card-title">Dans quelle laverie se situe la machine ?</h4>
+
+        <div *ngFor="let laundry of laundries">
+          <p>
+            <button type="button" class="btn btn-secondary" (click)="onSelectLaundry(laundry)">{{laundry.name }}</button>
+          </p>
+        </div>
+
+        <h5>Etape 1/4</h5>
+      </div><!--step 1-->
+
+      <div id="step2" *ngIf="selectedLaundry && !selectedMachine"> <!--step 2-->
+        <h5>Vous avez choisi : <i>{{selectedLaundry.name}}</i></h5>
+        <h4 class="card-title">Quelle machine vous pose problème ?</h4>
+
+        <div *ngFor="let machine of selectedLaundry.machines">
+          <p>
+            <button type="button" class="btn btn-primary-outline" (click)="onSelectMachine(machine)">{{machine}}</button>
+          </p>
+        </div>
+
+        <button type="button" class="btn btn-link" (click)="onRemoveLaundry()">Retour</button>
+        <h5>Etape 2/4</h5>
+      </div> <!--step 2-->
+
+      <div id="step3" *ngIf="selectedMachine && !step3Filled"> <!--step 3-->
+        <h5>Vous avez choisi : <i>{{selectedLaundry.name}}</i> &middot; <i>{{selectedMachine}}</i></h5>
+        <h4 class="card-title">Décrivez votre problème</h4>
+
+        <br>
+        <h5>Type de problème :</h5>
+        <div class="radioProblemsType">
+          <div class="radio" *ngFor="let item of problemTypes">
+            <label>
+              <input type="radio" (click)="selectedProblemType = item" [checked]="item === selectedProblemType" name="problemType">
+              {{item}}
+            </label>
+          </div>
+
+          <label>
+            <div class="form-inline">
+              <div class="form-group row">
+                <label for="otherTypeInput" (click)="selectedProblemType = inputProblemType" class="form-control-label">
+                  <input type="radio"  [checked]="inputProblemType === selectedProblemType" name="problemType">
+                  Autre : </label>
+                  <input type="text" id="otherTypeInput"  [(ngModel)]="inputProblemType"  (ngModelChange)="selectedProblemType = inputProblemType">
+                </div>
+              </div>
+            </label>
+          </div>
+          <br><br>
+
+          <div class="commentGroup">
+            <label for="otherTypeInput" (click)="selectedProblemType = inputProblemType" class="form-control-label">
+              <h5>Commentaire</h5>
+            </label>
+            <input type="text" [(ngModel)]="comment" placeholder="Optionnel">
+          </div>
+
+
+
+          <button type="button" class="btn btn-link" (click)="onRemoveMachine()">Retour</button>
+          <button type="button" class="btn btn-secondary" (click)="onFilledStep3()">Suivant</button>
+          <br><br>
+          <h5>Etape 3/4</h5>
+        </div> <!--step 3-->
+
+
+        <div id="step4" *ngIf="step3Filled && !sendState"> <!--step 4-->
+
+          <h4 class="card-title">A propos de toi</h4>
+          <p>Si tu souhaites être recontacté quand le problème sera résolu ou si tu souhaites récupérer tes jetons, laisse nous tes coordonnées</p>
+
+          <form [ngFormModel]="userInfosForm" #f="ngForm" (submit)="sendTicket(f.value)">
+            <label>Nom <i>(optionnel)</i></label><br>
+            <input type="text" ngControl="lastName" id="userInfosLastName" placeHolder="ex : Skywalker"><br>
+            <label>Prénom <i>(optionnel)</i></label><br>
+            <input type="text" ngControl="firstName" id="userInfosFirstName" placeHolder="ex : Luc"><br>
+            <label>Chambre <i>(optionnel)</i></label><br>
+            <input type="text" ngControl="room" id="userInfosRoom" placeHolder="ex : B521"><br>
+            <label>Téléphone <i>(optionnel)</i></label><br>
+            <input type="text" ngControl="phone" id="userInfosPhone" placeHolder="ex : +33(0)612453678"><br>
+            <label>Email</label><br>
+            <input type="text" ngControl="email" id="userInfosEmail" [attr.placeHolder]="(f.value.firstName && f.value.lastName)?'ex : '+f.value.firstName+'.'+f.value.lastName+'@insa-lyon.fr':'ex : luc.skywalker@insa-lyon.fr'"><br>
+            <br>
+
+            <input type="submit" value="Envoyer" class="btn btn-success" [disabled]="!f.valid">
+          </form>
+          <br>
+
+          <button type="button" class="btn btn-link" (click)="onRemoveStep3()">Retour</button>
+
+          <h5>Etape 4/4</h5>
+        </div>
+
+        <div id="step5" *ngIf="sendState">
+          <h4 class="card-title">Nous avons bien recu votre demande ! Nous allons la traiter dès que possible.</h4>
+        </div>
+
+      </div><!--step 4-->
+
+
+
+      <footer>
+        <p>BDE Insa Lyon &middot; <a href="https://github.com/BdEINSALyon/LaundryHelp" target="_blank">A propos</a> &middot; <a [routerLink]="['Manager']">Manager</a></p>
+      </footer>
+
+    </div>

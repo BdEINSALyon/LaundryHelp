@@ -1,0 +1,53 @@
+@import "{}/node_modules/bootstrap/scss/bootstrap.scss";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/* Reset */
+html,
+body,
+div {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Box-sizing border-box */
+* {
+  box-sizing: border-box;
+}
+
+/* Set up a default font and some padding to provide breathing room */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgb(246, 246, 246);
+}
+
+.questions {
+  text-align: center;
+
+  #step3 {
+    .radioProblemsType {
+      text-align:left;
+      display: inline-block;
+    }
+
+    .commentGroup {
+      display:flex;
+      input {
+        flex:1;
+      }
+    }
+  }
+
+  #step4 {
+    #userInfosEmail {
+      width: 250px;
+    }
+  }
+
+  input[type=text] {
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #BFBFBF;
+  }
+
+}

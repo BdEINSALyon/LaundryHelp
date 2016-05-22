@@ -1,0 +1,17 @@
+{
+ "atom": {
+    "rewriteTsconfig": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "experimentalDecorators": true
+  },
+  "filesGlob": [
+    "**/*.ts"
+  ],
+  "files": []
+}
