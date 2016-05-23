@@ -13,6 +13,7 @@ STATUS : IN DEVELOPMENT
 Install meteor (https://www.meteor.com/install)
 
 `git clone https://github.com/BdEINSALyon/LaundryHelp.git`  
+`cd LaundryHelp`  
 `meteor npm install`  
 `meteor` to launch the app ( http://localhost:3000/ )
 
@@ -27,13 +28,17 @@ To see saved tickets (for the moment) :
 
 Install dokku-mongo plugin : https://github.com/dokku/dokku-mongo
 
-`dokku mongodb:restart`  
-`dokku mongodb:create LaundryHelp`  
-`dokku mongodb:link LaundryHelp <app>`
+`dokku plugin:install https://github.com/dokku/dokku-mongo.git mongo`  
+`dokku apps:create <appName>`  
+`dokku mongo:create LaundryHelp`  
+`dokku mongo:link LaundryHelp <appName>`  
+`dokku config:set <app> ROOT_URL=<url>`  
+`git remote add dokku dokku@yourHost:<app>`  
+`git push dokku master`  
 
 ## TODO :
 
-1. Check mail adresss
+1. Check email adress format
 2. Add all laundries to **server/load-laundries.ts**
 3. User accounts, authentication and permissions (meteor remove insecure)
 4. Privacy (meteor remove autopublish)
