@@ -1,16 +1,17 @@
-import { Component }   from '@angular/core';
+import { Component, NgZone }   from '@angular/core';
 import { Laundries }     from '../../../collections/laundries';
 import { Tickets }     from '../../../collections/tickets';
 import { Mongo }       from 'meteor/mongo';
 import { RouterLink }  from '@angular/router-deprecated';
 import { FormBuilder, ControlGroup, Validators } from '@angular/common';
+import { MeteorComponent } from 'angular2-meteor';
 
 @Component({
   selector: 'user-form',
   templateUrl: '/client/imports/user-form/user-form.html',
   directives: [RouterLink]
 })
-export class UserForm {
+export class UserForm extends MeteorComponent {
   problemTypes: Array<string> =  [
     "Le linge est bloqué dans la machine",
     "J'ai mis un jeton mais le cycle n'a pas démarré",
@@ -27,8 +28,16 @@ export class UserForm {
     step3Filled: boolean;
     userInfosForm: ControlGroup;
     sendState: boolean;
-    constructor() {
-      this.laundries = Laundries.find();
+
+    zone: NgZone;
+
+    constructor(zone:NgZone) {
+      super();
+      this.zone=zone;
+
+      this.subscribe('laundries', () => {
+        this.laundries = Laundries.find();
+      }, true);
 
       let fb = new FormBuilder();
 
@@ -39,6 +48,9 @@ export class UserForm {
         phone: [''],
         email: ['', Validators.compose([Validators.required, emailValidator])]
       });
+      this.sendState=false;
+      this.comment="";
+      this.inputProblemType="";
     }
 
     onSelectLaundry(laundry:Laundry) {
@@ -66,12 +78,14 @@ export class UserForm {
       this.step3Filled=false;
     }
 
+    setSendState(state: boolean) {
+      console.log("oui");
+      this.sendState=state;
+    }
     sendTicket(userForm) {
       if (this.userInfosForm.valid) {
-        this.sendState=true;
-        var that=this;
-        Tickets.insert({
-          date: new Date(),
+        let ticket : Ticket = {
+          date: null, //Will be inserted by the server
           laundry: this.selectedLaundry.name,
           machine: this.selectedMachine,
           problem: this.selectedProblemType,
@@ -83,11 +97,20 @@ export class UserForm {
             phone: userForm.phone,
             email: userForm.email
           }
-        }, function() {
-          that.sendState=true;
+        };
+
+        this.call('sendTicket', ticket, (error) => {
+
+          this.zone.run(() => {
+            if (error) {
+              alert(`Une erreur est survenue : ${error}.`);
+              this.sendState=false;
+              return;
+            }
+            this.sendState=true;
+          });
+
         });
-
-
       }
     }
   }

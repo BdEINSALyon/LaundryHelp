@@ -6,6 +6,7 @@ import { ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig } from '@angular/route
 import { APP_BASE_HREF } from '@angular/common';
 import { UserForm } from './imports/user-form/user-form.ts';
 import { Manager } from './imports/manager/manager.ts';
+import '../collections/methods.ts';
 
 @Component({
   selector: 'app',

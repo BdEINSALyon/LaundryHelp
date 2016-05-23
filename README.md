@@ -40,9 +40,8 @@ Install dokku-mongo plugin : https://github.com/dokku/dokku-mongo
 ## TODO :
 
 1. Add all laundries to **server/load-laundries.ts**
-2. User accounts, authentication and permissions (meteor remove insecure)
-3. Privacy (meteor remove autopublish)
-4. Manager interface
-5. Send a mail when a ticket is received with a link to edit the ticket
-6. Configure Angular2 in Production Mode
-7. Improve CSS/UI
+2. Add user accounts
+3. Manager interface
+4. Send a mail when a ticket is received with a link to edit the ticket
+5. Configure Angular2 in Production Mode
+6. Improve CSS/UI
