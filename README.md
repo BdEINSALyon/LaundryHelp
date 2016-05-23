@@ -5,9 +5,10 @@ Support app for laundries
 
 Using meteor and angularJS 2 thanks to http://www.angular-meteor.com/
 
+
+[![license](https://img.shields.io/github/license/BdEINSALyon/LaundryHelp.svg)](https://opensource.org/licenses/lgpl-3.0.html)
+[![Dependency Status](https://david-dm.org/mgechev/angular2-seed.svg)](https://david-dm.org/mgechev/angular2-seed)
 STATUS : IN DEVELOPMENT
-
-
 ## Getting started
 
 Install meteor (https://www.meteor.com/install)

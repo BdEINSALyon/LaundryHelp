@@ -1,6 +1,6 @@
 interface Ticket {
   date: Date;
-  laundry: Laundry;
+  laundry: string;
   machine: string;
   problem: string;
   comment?: string;
