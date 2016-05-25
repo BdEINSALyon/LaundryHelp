@@ -15,8 +15,8 @@ import '../collections/methods.ts';
 })
 
 @RouteConfig([
-  { path: '/', as: 'UserForm', component: UserForm },
-  { path: '/manager/', as: 'Manager', component: Manager }
+  { path: '/', as: 'UserForm', component: UserForm , useAsDefault: true},
+  { path: '/manager/...', as: 'Manager', component: Manager }
 ])
 
 class LaundryHelp {}

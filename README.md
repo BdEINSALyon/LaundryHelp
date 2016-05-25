@@ -41,7 +41,11 @@ Install dokku-mongo plugin : https://github.com/dokku/dokku-mongo
 
 1. Add all laundries to **server/load-laundries.ts**
 2. Add user accounts
-3. Manager interface
-4. Send a mail when a ticket is received with a link to edit the ticket
-5. Configure Angular2 in Production Mode
-6. Improve CSS/UI
+3. Add details about tokens/comments in typings/ticket.d.ts
+4. Add a link to edit the ticket
+5. Send a mail when a ticket is received with that link
+6. Send a mail to the user when a change is made to the ticket
+7. Add a badge "Deploy on heroku"
+8. Improve CSS/UI
+9. Configure Angular2 in Production Mode
+10. Write tests

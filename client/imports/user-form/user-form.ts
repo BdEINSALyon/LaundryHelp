@@ -35,6 +35,9 @@ export class UserForm extends MeteorComponent {
       super();
       this.zone=zone;
 
+      document.title = "BDE - Support des laveries";
+
+
       this.subscribe('laundries', () => {
         this.laundries = Laundries.find();
       }, true);
