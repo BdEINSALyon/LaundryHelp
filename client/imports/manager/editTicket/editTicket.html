@@ -1,0 +1,58 @@
+<div class="jumbotron editTicket">
+
+  <h2>Editer un ticket</h2>
+  <br>
+  <div class="card" *ngIf="ticket">
+    <div class="card-block">
+      <h4 class="card-title">{{ticket.person.firstName}} {{ticket.person.lastName}} <a href="mailto:{{ticket.person.email}}">{{ticket.person.email}}</a></h4>
+      <p class="card-text">
+        <b>Date : </b> {{ticket.date | date:'dd/MM/yy'}} à {{ticket.date | date:'H:m'}}<br>
+        <b>Laverie : </b> {{ticket.laundry}} <br>
+        <b>Machine : </b> {{ticket.machine}} <br>
+        <b>Problème : </b> {{ticket.problem}} <br>
+        <b>Commentaire : </b> {{ticket.comment}} <br>
+        <b>Utilisateur : </b> Chambre : {{ticket.person.room}} , Téléphone : {{ticket.person.phone}}
+      </p>
+    </div><div class="card-block">
+      <div class="radioNbToken">
+        Necessite le rendu de jeton :
+        <div class="radio">
+          <label>
+            <input type="radio" (click)="ticket.nbTokensToGive=0" [checked]="ticket.nbTokensToGive<=0" name="radioNbToken">
+            Non
+          </label>
+          <label>
+            <input type="radio" (click)="ticket.nbTokensToGive=1" [checked]="ticket.nbTokensToGive>0" name="radioNbToken">
+            Oui
+          </label>
+
+          <div *ngIf="ticket.nbTokensToGive>0" id="nbTokenGroup">
+            <label for="nbTokensToGive">
+              Nombre de jetons à rendre :
+            </label>
+            <input type="number" [(ngModel)]="ticket.nbTokensToGive" id="nbTokensToGive">
+          </div>
+        </div>
+
+      </div>
+
+      <div id="commentGroup">
+        <label for="answerComment">
+          Votre commentaire :
+        </label>
+        <input type="text" [(ngModel)]="ticket.answerComment" id="answerComment">
+      </div>
+    </div>
+    <div class="card-block text-xs-right">
+      <button *ngIf="!sent" type="button" (click)="send()" class="btn btn-success">Envoyer</button>
+
+      <p *ngIf="sent" class="card-text">Mail envoyé ! <a [routerLink]="['/Manager']">Retour à la liste des tickets</a></p>
+    </div>
+
+  </div>
+
+  <div class="card card-block" *ngIf="!ticket">
+    <p class="card-text">Ticket introuvable...</p>
+  </div>
+
+</div>

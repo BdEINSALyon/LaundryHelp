@@ -3,15 +3,15 @@
   <h2>Bienvenue, Bob</h2>
   <br>
   <div class="card card-block" *ngIf="selectedTicket">
-    <h4 class="card-title">{{selectedTicket.person.firstName}} {{selectedTicket.person.lastName}} <a href="mailto:{{selectedTicket.person.lastName}}">{{selectedTicket.person.email}}</a></h4>
+    <h4 class="card-title">{{selectedTicket.person.firstName}} {{selectedTicket.person.lastName}} <a href="mailto:{{selectedTicket.person.email}}">{{selectedTicket.person.email}}</a></h4>
     <p class="card-text">
-      <b>Date : </b> {{selectedTicket.date}} <br>
+      <b>Date : </b> {{selectedTicket.date | date:'dd/MM/yy'}} à {{selectedTicket.date | date:'H:m'}} <br>
       <b>Laverie : </b> {{selectedTicket.laundry}} <br>
       <b>Machine : </b> {{selectedTicket.machine}} <br>
       <b>Problème : </b> {{selectedTicket.problem}} <br>
       <b>Commentaire : </b> {{selectedTicket.comment}} <br>
       <b>Utilisateur : </b> Chambre : {{selectedTicket.person.room}} , Téléphone : {{selectedTicket.person.phone}}</p>
-      <a href="#" class="card-link">Editer le ticket</a>
+      <a [routerLink]="['/Manager','EditTicket', {ticketId: selectedTicket._id}]" class="card-link">Editer le ticket</a>
   </div>
 
     <h4>Liste des tickets :</h4>

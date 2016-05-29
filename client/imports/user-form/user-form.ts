@@ -29,11 +29,8 @@ export class UserForm extends MeteorComponent {
     userInfosForm: ControlGroup;
     sendState: boolean;
 
-    zone: NgZone;
-
-    constructor(zone:NgZone) {
+    constructor(private zone:NgZone) {
       super();
-      this.zone=zone;
 
       document.title = "BDE - Support des laveries";
 

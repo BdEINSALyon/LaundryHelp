@@ -23,5 +23,24 @@ Meteor.methods({
     ticket.date=new Date();
 
     Tickets.insert(ticket);
+
+    //TODO : send an email
+
+  },
+
+  sendAnswer: function (ticket: Ticket) {
+
+    check(ticket._id, String);
+    check(ticket.nbTokensToGive, Number);
+    check(ticket.answerComment, String);
+
+    Tickets.update(ticket._id, {
+      $set: {
+        nbTokensToGive: ticket.nbTokensToGive,
+        answerComment: ticket.answerComment
+      }
+    });
+
+    //TODO : send an email
   }
 });

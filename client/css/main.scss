@@ -58,3 +58,19 @@ body {
     }
   }
 }
+.editTicket {
+  .radioNbToken {
+    #nbTokenGroup {
+      display: inline-block;
+      #nbTokensToGive {
+        width:50px;
+      }
+    }
+  }
+  #answerComment {
+    height: 30px;
+    border: 0;
+    border-bottom: 1px solid #BFBFBF;
+    width:100%;
+  }
+}
