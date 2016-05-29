@@ -11,7 +11,7 @@
   "env": {
     "ROOT_URL": {
       "description": "URL of your webApp",
-      "value": ""
+      "value": "https://yourApp.herokuapp.com"
     }
   },
   "addons": [

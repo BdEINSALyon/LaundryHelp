@@ -9,6 +9,9 @@ Using meteor and angularJS 2 thanks to http://www.angular-meteor.com/
 [![license](https://img.shields.io/github/license/BdEINSALyon/LaundryHelp.svg)](https://opensource.org/licenses/lgpl-3.0.html)
 [![Dependency Status](https://david-dm.org/BdEINSALyon/LaundryHelp.svg)](https://david-dm.org/BdEINSALyon/LaundryHelp)
 STATUS : IN DEVELOPMENT
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Getting started
 
 Install meteor (https://www.meteor.com/install)
@@ -45,7 +48,6 @@ Install dokku-mongo plugin : https://github.com/dokku/dokku-mongo
 4. Add a link to edit the ticket
 5. Send a mail when a ticket is received with that link
 6. Send a mail to the user when a change is made to the ticket
-7. Add a badge "Deploy on heroku"
-8. Improve CSS/UI
-9. Configure Angular2 in Production Mode
-10. Write tests
+7. Improve CSS/UI
+8. Configure Angular2 in Production Mode
+9. Write tests
