@@ -1,0 +1,25 @@
+{
+  "name": "LaundryHelp",
+  "description": "Application de support des laveries de l'INSA Lyon",
+  "repository": "https://github.com/BdEINSALyon/LaundryHelp",
+  "logo": "https://avatars3.githubusercontent.com/u/4785426",
+  "keywords": [
+    "Laundry",
+    "Support",
+    "Students"
+  ],
+  "env": {
+    "ROOT_URL": {
+      "description": "URL of your webApp",
+      "value": ""
+    }
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/AdmitHub/meteor-buildpack-horse"
+    }
+  ]
+}
