@@ -10,14 +10,25 @@
       <b>Machine : </b> {{selectedTicket.machine}} <br>
       <b>Problème : </b> {{selectedTicket.problem}} <br>
       <b>Commentaire : </b> {{selectedTicket.comment}} <br>
-      <b>Utilisateur : </b> Chambre : {{selectedTicket.person.room}} , Téléphone : {{selectedTicket.person.phone}}</p>
+      <span *ngIf="selectedTicket.person.room || selectedTicket.person.phone">
+        <b>Utilisateur : </b> Chambre : {{selectedTicket.person.room}} , Téléphone : {{selectedTicket.person.phone}}
+      </span></p>
+      <p class="card-text" *ngIf="selectedTicket.nbTokensToGive > 0">
+        <b>Jetons à rendre : </b> {{selectedTicket.nbTokensToGive}}<br>
+        <b>Commentaire : </b> {{selectedTicket.answerComment}} <br>
+        <span *ngIf="selectedTicket.refunded">
+          <b>Rendu le : </b>  {{selectedTicket.refunded | date:'dd/MM/yy'}} à {{selectedTicket.refunded | date:'H:m'}}  <br>
+        </span>
+      </p>
+      <button type="button" class="btn btn-secondary btn-sm pull-xs-right" *ngIf="!selectedTicket.refunded && selectedTicket.nbTokensToGive > 0" (click)="refund(selectedTicket)">Marquer comme rendu</button>
       <a [routerLink]="['/Manager','EditTicket', {ticketId: selectedTicket._id}]" class="card-link">Editer le ticket</a>
   </div>
 
     <h4>Liste des tickets :</h4>
     <div class="list-group list-tickets">
       <a href="#" class="list-group-item" *ngFor="let ticket of tickets" (click)="onSelectTicket(ticket)">
-        <span class="label label-default pull-xs-right label-success">2 jetons rendus</span>
+        <span class="label label-default pull-xs-right label-info" *ngIf="!ticket.refunded && ticket.nbTokensToGive > 0">{{ticket.nbTokensToGive}} jetons à rendre</span>
+        <span class="label label-default pull-xs-right label-success" *ngIf="ticket.refunded && ticket.nbTokensToGive > 0">{{ticket.nbTokensToGive}} jetons rendus</span>
         {{ticket.person.firstName}} {{ticket.person.lastName}} <i>{{ticket.person.email}}</i>
       </a>
     </div>

@@ -20,8 +20,7 @@ Meteor.methods({
         email: String
       }
     });
-    ticket.date=new Date();
-
+    ticket.date = new Date();
     Tickets.insert(ticket);
 
     //TODO : send an email
@@ -42,5 +41,18 @@ Meteor.methods({
     });
 
     //TODO : send an email
+  }
+
+  ,
+
+  refundTicket: function (ticket: Ticket) {
+
+    check(ticket._id, String);
+
+    Tickets.update(ticket._id, {
+      $set: {
+        refunded: new Date()
+      }
+    });
   }
 });

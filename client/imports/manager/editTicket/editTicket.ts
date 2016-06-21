@@ -36,9 +36,9 @@ export class EditTicket extends MeteorComponent {
       return;
     }
     else if(!t.nbTokensToGive)
-    t.nbTokensToGive=0;
+      t.nbTokensToGive=0;
     else if(!t.answerComment)
-    t.answerComment="";
+      t.answerComment="";
 
 
     this.call('sendAnswer', t, (error) => {

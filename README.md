@@ -44,7 +44,7 @@ Install dokku-mongo plugin : https://github.com/dokku/dokku-mongo
 
 1. Add all laundries to **server/load-laundries.ts**
 2. Add user accounts
-3. Add a button to refund tokens
+3. Add ability to cancel a refund, and to mark as processed
 4. Send a mail when a ticket is received with that link
 5. Send a mail to the user when a change is made to the ticket
 6. Improve CSS/UI

@@ -8,4 +8,5 @@ interface Ticket {
   person: Person;
   nbTokensToGive?: number;
   answerComment?: string;
+  refunded?: Date;
 }

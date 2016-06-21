@@ -27,4 +27,13 @@ export class TicketsList extends MeteorComponent {
   onSelectTicket(ticket:Ticket) {
     this.selectedTicket=ticket;
   }
+
+  refund(ticket:Ticket) {
+    this.call('refundTicket', ticket, (error) => {
+      if (error) {
+        alert(`Une erreur est survenue : ${error}.`);
+        return;
+      }
+    });
+  }
 }
